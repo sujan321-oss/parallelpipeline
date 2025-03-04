@@ -5,14 +5,14 @@ def parallelexecutefun=[:]
 
 def data=[
    20:"khuma",
-   10:"intern"
+   30:"intern"
 ]
 
  def printfunction(key, toprint){
     sleep(key)
     echo " ${key}<-------->${toprint}"
 
-    if (key==10){
+    if (key==30){
       echo "makeing ${key} faield"
       dss
     }
