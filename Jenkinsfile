@@ -15,6 +15,15 @@ def data=[
     return "hello"
   }
 
+  def runregressiontest(){
+        echo "running a regression pipeline"
+        build job: "regressionpileine"
+  }
+
+  parallelexecutefun["makeitfailed"] = {
+     runregressiontest()
+  }
+
     data.each{
   parallelexecutefun["execute : ${it.value}"] = {
     printfunction(it.key,it.value)
