@@ -1,5 +1,5 @@
 
-def toExecute=[:]
+def toExecute=[]
 
 def data=[
    20:"khuma",
