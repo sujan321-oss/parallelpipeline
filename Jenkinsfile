@@ -2,8 +2,8 @@
 def toExecute=[]
 
 def data=[
-   10:"khuma",
-   20:"intern"
+   20:"khuma",
+   10:"intern"
 ]
 
  def printfunction(key, toprint){
