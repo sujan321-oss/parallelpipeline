@@ -41,9 +41,7 @@ def data=[
 
 node {
 
- options {
-        parallelsAlwaysFailFast()
-    }
+
 
    parallel(
     parallelexecutefun
@@ -56,7 +54,8 @@ node {
     data.each{
        echo "${it}"
     }
-
+    
+    failFast: true
 
 
 
