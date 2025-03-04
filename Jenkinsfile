@@ -9,6 +9,8 @@ def data=[
  def printfunction(key, toprint){
     sleep(key)
     echo " ${key}<-------->${toprint}"
+
+    return "hello"
   }
 
  
