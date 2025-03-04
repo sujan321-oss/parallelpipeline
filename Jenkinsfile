@@ -44,7 +44,9 @@ node {
 
 
    parallel(
-    parallelexecutefun
+    parallelexecutefun,
+     failFast: true
+
    )
 
 
@@ -55,7 +57,7 @@ node {
        echo "${it}"
     }
     
-    failFast: true
+   
 
 
 
