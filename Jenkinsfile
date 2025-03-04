@@ -41,7 +41,9 @@ def data=[
 
 node {
 
- 
+  options {
+        parallelsAlwaysFailFast()
+    }
 
    parallel(
     parallelexecutefun
