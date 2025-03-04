@@ -1,5 +1,5 @@
 
-def toExecute=[]
+def toExecute=[:]
 
 def data=[
    20:"khuma",
@@ -10,6 +10,8 @@ def data=[
     sleep(key)
     echo " ${key}<-------->${toprint}"
   }
+
+ 
 
 
 
@@ -30,6 +32,13 @@ node {
 
    stage("print exectue"){
     echo "printing execute ${toExecute.toString()}"
+
+    data.each{
+       echo "${itt}"
+    }
+
+
+
    }
 
 
