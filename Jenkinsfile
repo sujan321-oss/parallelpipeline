@@ -1,15 +1,18 @@
 node {
 
-  parallel{
-    stage("printing"){
+  parallel(
+    
+    printign1:{
       sleep(10)
-      echo "hello from printing stage"
+      echo("printing from  prining1")
+    },
+
+    printing2{
+      sleep(20)
+      echo("printing from printing2")
     }
-    stage("printing2"){
-      sleep(5)
-      echo "hello from printng2"
-    }
-  }
+
+  )
    
 }
 
