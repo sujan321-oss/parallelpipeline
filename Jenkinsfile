@@ -8,7 +8,7 @@ node {
     },
 
     printing2:{
-      sleep(20)
+      sleep(5)
       echo("printing from printing2")
     }
 
