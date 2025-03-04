@@ -6,14 +6,16 @@ def data=[
    20:"intern"
 ]
 
-
-node {
-
-  def printfunction(key, toprint){
+ def printfunction(key, toprint){
     sleep(key)
     echo " ${key}<-------->${toprint}"
   }
 
+
+
+node {
+
+ 
 
    parallel(
      exec: {
