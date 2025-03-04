@@ -1,6 +1,8 @@
 
 def toExecute=[]
 
+def parallelexecutefun=[:]
+
 def data=[
    20:"khuma",
    10:"intern"
@@ -12,6 +14,8 @@ def data=[
 
     return "hello"
   }
+
+
 
  
 
@@ -38,6 +42,12 @@ node {
     data.each{
        echo "${it}"
     }
+
+    data.each{
+  parallelexecutefun["execute : ${it.value}"] = {
+    printfunction(it.key,it.value)
+  }
+}
 
 
 
