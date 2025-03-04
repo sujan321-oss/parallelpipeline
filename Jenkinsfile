@@ -1,5 +1,7 @@
-
+// + [failFast: true]
 def toExecute=[]
+
+def failed=false
 
 def parallelexecutefun=[:]
 
@@ -35,6 +37,18 @@ def data=[
   }
 }
 
+def checkfailed(){
+  while (!failed)
+    {
+      sleep(1)
+    }
+    error("failed process")
+}
+
+parallelexecutefun["monitorFailed"] = {
+ checkfailed()
+}
+
  
 
 
@@ -44,7 +58,7 @@ node {
 
 
    parallel(
-    parallelexecutefun + [failFast: true],
+    parallelexecutefun ,
 
    )
 
