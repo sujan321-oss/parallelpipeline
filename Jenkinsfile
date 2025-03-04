@@ -12,11 +12,16 @@ def data=[
     sleep(key)
     echo " ${key}<-------->${toprint}"
 
+    if (key==10){
+      echo "makeing ${key} faield"
+      dss
+    }
+
     return "hello"
   }
 
   def runregressiontest(){
-        echo "running a regression pipeline"
+        println "running a regression pipeline"
         build job: "regressionpileine"
   }
 
