@@ -1,18 +1,36 @@
+
+def toExecute=[]
+
+def data=[
+   10:"khuma",
+   20:"intern"
+]
+
+
 node {
 
-  parallel(
+  def printfunction(key, toprint){
+    sleep(key)
+    echo " ${key}<-------->${toprint}"
+  }
 
-    printign1:{
-      sleep(10)
-      echo("printing from  prining1")
-    },
 
-    printing2:{
-      sleep(5)
-      echo("printing from printing2")
-    }
+   parallel(
+     exec: {
 
-  )
+          data.each{ key,value->
+        toExecute.add(printfunction(key,value))
+        }
+
+     }
+   )
+
+
+   stage("print exectue"){
+    echo "printing execute ${toExecute.toString()}"
+   }
+
+
    
 }
 
