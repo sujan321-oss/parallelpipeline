@@ -36,7 +36,7 @@ node {
     echo "printing execute ${toExecute.toString()}"
 
     data.each{
-       echo "${itt}"
+       echo "${it}"
     }
 
 
