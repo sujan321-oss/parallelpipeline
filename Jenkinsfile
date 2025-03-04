@@ -15,7 +15,11 @@ def data=[
     return "hello"
   }
 
-
+    data.each{
+  parallelexecutefun["execute : ${it.value}"] = {
+    printfunction(it.key,it.value)
+  }
+}
 
  
 
@@ -26,13 +30,7 @@ node {
  
 
    parallel(
-     exec: {
-
-          data.each{ key,value->
-        toExecute.add(printfunction(key,value))
-        }
-
-     }
+    parallelexecutefun
    )
 
 
@@ -43,11 +41,7 @@ node {
        echo "${it}"
     }
 
-    data.each{
-  parallelexecutefun["execute : ${it.value}"] = {
-    printfunction(it.key,it.value)
-  }
-}
+
 
 
 
