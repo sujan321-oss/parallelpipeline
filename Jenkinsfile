@@ -58,7 +58,7 @@ node {
 
 
    parallel(
-    parallelexecutefun ,
+    parallelexecutefun + [failFast: true] ,
 
    )
 
