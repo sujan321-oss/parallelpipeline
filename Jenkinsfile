@@ -10,6 +10,7 @@ def run_regression_pipeline(){
 def generate_error(){
     sleep(30)     
     echo "error generated successfully"
+    error("generating an error")
 }
 
 def run_stages_parallely(nodelabel, taskToExecute){
