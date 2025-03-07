@@ -16,7 +16,7 @@ def generate_error(){
 
 tasks = [ 
         "stage1" : {run_stages_parallely("agent1",run_regression_pipeline())} ,
-         "stage2": {run_stages_parallely("mastert",generate_error())},
+         "stage2": {run_stages_parallely("",generate_error())},
 ]
 
 
