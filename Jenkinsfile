@@ -1,26 +1,38 @@
-def run_regression_pipeline() {
-    echo "This function is running a regression pipeline"
-    build job: "regressionpipeline"
+
+// running a regression pieline
+// run it on a agent node  
+def run_regression_pipeline(){
+    echo "this function is running a regression pipeline "
+    buildjob : "regressionpipeline"
 }
 
-def generate_error() {
-    sleep(30)
-    error("Error occurred")
+
+// generating a error after 30 sec 
+// run it on a master node 
+def generate_error(){
+    sleep(30)     
+     error generated   
 }
 
-def run_stages_parallely(nodelabel, task_to_execute) {
-    node(nodelabel) {
-        stage("Execute Task") { 
-            task_to_execute() // Execute the function
-        }
+tasks = [ 
+        "stage1" : {run_stages_parallely("agent1",run_regression_pipeline)} ,
+         "stage2": {run_stages_parallely("mastert",generate_error)},
+]
+
+
+
+def run_stages_parallely(nodelabel,task_to_excute){
+    node(nodelabel){
+         stage("exectue task") { 
+               task_to_excute()
+         }
     }
 }
 
-// Define the tasks map properly
-def tasks = [
-    stage1: { -> run_stages_parallely("agent1", run_regression_pipeline) },
-    stage2: { -> run_stages_parallely("", generate_error) }
-]
 
-// Execute in parallel
-parallel tasks
+parallel(
+   tasks
+)
+
+
+
