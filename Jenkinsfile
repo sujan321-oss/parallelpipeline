@@ -30,5 +30,5 @@ def tasks = [
 // Execute the parallel tasks
 parallel(
     tasks,
-    failFast: true
+    [ failFast: true ]
 )
