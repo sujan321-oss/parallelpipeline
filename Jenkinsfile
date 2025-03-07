@@ -26,9 +26,8 @@ def tasks = [
     "stage1" : { run_stages_parallely("agent1", { run_regression_pipeline() }) },
     "stage2" : { run_stages_parallely("agent2", { generate_error() }) }
 ]
-
+tasks['failFast'] = true 
 // Execute the parallel tasks
 parallel(
-    tasks,
-    [ failFast: true ]
+    tasks
 )
