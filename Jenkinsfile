@@ -12,22 +12,18 @@ def generate_error(){
     echo "error generated successfully"
 }
 
-// Define tasks properly as closures
-tasks = [ 
-    "stage1" : {
-        node("agent1") {
-            stage("execute regression") { 
-                run_regression_pipeline()
-            }
-        }
-    },
-    "stage2": {
-        node("Built-In-Node") {
-            stage("generate error") { 
-                generate_error()
-            }
-        }
+def run_stages_parallely(nodelabel, taskToExecute){
+    node(nodelabel){
+         stage("execute task") { 
+               taskToExecute()  // Execute the passed closure
+         }
     }
+}
+
+// Define tasks properly with closures
+tasks = [ 
+    "stage1" : { run_stages_parallely("agent1", { run_regression_pipeline() }) },
+    "stage2" : { run_stages_parallely("Built-In-Node", { generate_error() }) }
 ]
 
 // Execute the parallel tasks
