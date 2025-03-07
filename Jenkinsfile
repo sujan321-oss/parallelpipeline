@@ -1,76 +1,38 @@
-// + [failFast: true]
-def toExecute=[]
 
-def failed=false
+// running a regression pieline
+// run it on a agent node  
+def run_regression_pipeline(){
+    echo "this function is running a regression pipeline "
+    buildjob : "regressionpipeline"
+}
 
-def parallelexecutefun=[:]
 
-def data=[
-   20:"khuma",
-   30:"intern"
+// generating a error after 30 sec 
+// run it on a master node 
+def generate_error(){
+    sleep(30)     
+     error generated   
+}
+
+tasks = [ 
+        "stage1" : {run_stages_parallely("agent1",run_regression_pipeline)} ,
+         "stage2": {run_stages_parallely("mastert",generate_error)},
 ]
 
- def printfunction(key, toprint){
-    sleep(key)
-    echo " ${key}<-------->${toprint}"
 
-    if (key==30){
-      echo "makeing ${key} faield"
-      dss
+
+def run_stages_parallely(nodelabel,task_to_excute){
+    node(nodelabel){
+         stage("exectue task") { 
+               task_to_excute()
+         }
     }
-
-    return "hello"
-  }
-
-  def runregressiontest(){
-        println "running a regression pipeline"
-        build job: "regressionpileine"
-  }
-
-  parallelexecutefun["makeitfailed"] = {
-     runregressiontest()
-  }
-
-    data.each{
-  parallelexecutefun["execute : ${it.value}"] = {
-    printfunction(it.key,it.value)
-  }
 }
 
 
-
- 
-
-
-
-node {
-
-
-
-   parallel(
-   parallelexecutefun + [failFast: true]
-
-   )
-
-
-   stage("print exectue"){
-    echo "printing execute ${toExecute.toString()}"
-
-    data.each{
-       echo "${it}"
-    }
-    
-   
-
-
-
-
-   }
-
-
-   
-}
-
+parallel(
+   tasks
+)
 
 
 
