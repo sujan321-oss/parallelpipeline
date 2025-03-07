@@ -28,4 +28,4 @@ tasks = [
 ]
 
 // Execute the parallel tasks
-parallel(tasks)
+parallel(tasks +  fastFail: true )
