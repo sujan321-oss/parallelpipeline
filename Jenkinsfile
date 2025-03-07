@@ -1,38 +1,34 @@
-
-// running a regression pieline
-// run it on a agent node  
+// running a regression pipeline
+// run it on an agent node  
 def run_regression_pipeline(){
     echo "this function is running a regression pipeline "
-    buildjob : "regressionpileine"
+    build job: "regressionpileine"  // Corrected syntax
 }
 
-
-// generating a error after 30 sec 
+// generating an error after 30 sec 
 // run it on a master node 
 def generate_error(){
     sleep(30)     
     echo "error generated successfully"
 }
 
+// Define tasks properly as closures
 tasks = [ 
-        "stage1" : {run_stages_parallely("agent1",run_regression_pipeline())} ,
-         "stage2": {run_stages_parallely("Built-In-Node",generate_error())},
+    "stage1" : {
+        node("agent1") {
+            stage("execute regression") { 
+                run_regression_pipeline()
+            }
+        }
+    },
+    "stage2": {
+        node("Built-In-Node") {
+            stage("generate error") { 
+                generate_error()
+            }
+        }
+    }
 ]
 
-
-
-def run_stages_parallely(nodelabel,task_to_excute){
-    node(nodelabel){
-         stage("exectue task") { 
-               task_to_excute
-         }
-    }
-}
-
-
-parallel(
-   tasks
-)
-
-
-
+// Execute the parallel tasks
+parallel(tasks)
