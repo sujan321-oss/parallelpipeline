@@ -11,7 +11,7 @@ def run_regression_pipeline(){
 // run it on a master node 
 def generate_error(){
     sleep(30)     
-     error generated   
+    error("errror occured") 
 }
 
 tasks = [ 
