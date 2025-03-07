@@ -3,7 +3,7 @@
 // run it on a agent node  
 def run_regression_pipeline(){
     echo "this function is running a regression pipeline "
-    buildjob : "regressionpipeline"
+    buildjob : "regressionpileine"
 }
 
 
