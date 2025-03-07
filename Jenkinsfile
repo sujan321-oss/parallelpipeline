@@ -23,7 +23,7 @@ def run_stages_parallely(nodelabel, taskToExecute){
 // Define tasks properly with closures
 tasks = [ 
     "stage1" : { run_stages_parallely("agent1", { run_regression_pipeline() }) },
-    "stage2" : { run_stages_parallely("master", { generate_error() }) }
+    "stage2" : { run_stages_parallely("agent2", { generate_error() }) }
 ]
 
 // Execute the parallel tasks
